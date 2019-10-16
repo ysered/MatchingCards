@@ -56,15 +56,23 @@
 		8478C2502357B43700D2C6D4 /* MatchingCards */ = {
 			isa = PBXGroup;
 			children = (
-				8478C2512357B43700D2C6D4 /* AppDelegate.swift */,
-				8478C2532357B43700D2C6D4 /* SceneDelegate.swift */,
 				8478C2552357B43700D2C6D4 /* ViewController.swift */,
 				8478C2572357B43700D2C6D4 /* Main.storyboard */,
-				8478C25A2357B43700D2C6D4 /* Assets.xcassets */,
-				8478C25C2357B43700D2C6D4 /* LaunchScreen.storyboard */,
+				8478C2652357B45A00D2C6D4 /* Supporting Files */,
 				8478C25F2357B43700D2C6D4 /* Info.plist */,
 			);
 			path = MatchingCards;
+			sourceTree = "<group>";
+		};
+		8478C2652357B45A00D2C6D4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8478C2512357B43700D2C6D4 /* AppDelegate.swift */,
+				8478C2532357B43700D2C6D4 /* SceneDelegate.swift */,
+				8478C25A2357B43700D2C6D4 /* Assets.xcassets */,
+				8478C25C2357B43700D2C6D4 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
