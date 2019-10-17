@@ -1,20 +1,19 @@
-//
-//  ViewController.swift
-//  MatchingCards
-//
-//  Created by Yurii Serediuk on 16.10.2019.
-//  Copyright © 2019 Yurii Serediuk. All rights reserved.
-//
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, PlayingCardViewDelegate {
 
+    @IBOutlet var playingCardViews: [PlayingCardView]!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        for cardView in playingCardViews {
+            cardView.singleTapDelegate = self
+        }
     }
-
-
+    
+    func onTap(view: PlayingCardView, index: Int) {
+        print("User tapped on view with index: \(index)")
+        view.flipOver()
+    }
 }
-

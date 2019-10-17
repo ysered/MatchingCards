@@ -11,19 +11,201 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MatchingCards" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view opaque="NO" contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-MA-taj" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
-                                <rect key="frame" x="63" y="159" width="81" height="101"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="VUu-KV-ylP">
+                                <rect key="frame" x="20" y="44" width="378" height="634"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="QcR-3D-LWb">
+                                        <rect key="frame" x="0.0" y="0.0" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="rN9-MA-taj" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="1" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Lea-Ho-zoP" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="2" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="qL4-Po-hVf" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="3" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="i5u-DQ-daW" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="atm-Ys-Wtw">
+                                        <rect key="frame" x="0.0" y="109" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" tag="4" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="skk-SJ-xVa" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="5" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="ekU-Lq-FKT" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="6" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dVx-e0-55l" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="7" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="eAa-eQ-wBF" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="XIu-ff-h63">
+                                        <rect key="frame" x="0.0" y="218" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" tag="8" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="dKg-bx-Oqu" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="9" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="LCc-Mf-ox1" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="10" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="CsJ-m4-ANp" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="11" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Miy-0F-bLu" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="t2w-pj-DAx">
+                                        <rect key="frame" x="0.0" y="327" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" tag="12" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="4QU-iF-GAm" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="13" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="W2A-V9-Dz1" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="14" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="urS-P1-BLP" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="15" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Odw-Vu-akK" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="YkS-1u-t2v">
+                                        <rect key="frame" x="0.0" y="436" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" tag="16" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="aJ4-Mo-SNV" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="17" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2HY-ZZ-32w" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="18" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="MZB-0N-zX7" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="19" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2dR-mW-MMX" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vmz-bb-ztT">
+                                        <rect key="frame" x="0.0" y="545" width="378" height="89"/>
+                                        <subviews>
+                                            <view opaque="NO" tag="20" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="6DO-Cp-T5z" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="21" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="03g-Re-EgN" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="99.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="22" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Vxj-Tq-K7q" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="199" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                            <view opaque="NO" tag="23" contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="35a-bP-q4U" customClass="PlayingCardView" customModule="MatchingCards" customModuleProvider="target">
+                                                <rect key="frame" x="298.5" y="0.0" width="79.5" height="89"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <gestureRecognizers/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VUu-KV-ylP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="2MS-Z9-Cj0"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="VUu-KV-ylP" secondAttribute="bottom" constant="184" id="PAa-2e-xpP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VUu-KV-ylP" secondAttribute="trailing" constant="16" id="d1o-ih-Azd"/>
+                            <constraint firstItem="VUu-KV-ylP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dov-Bb-cAO"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outletCollection property="playingCardViews" destination="rN9-MA-taj" collectionClass="NSMutableArray" id="kp0-8O-l4M"/>
+                        <outletCollection property="playingCardViews" destination="Lea-Ho-zoP" collectionClass="NSMutableArray" id="ljd-CJ-If4"/>
+                        <outletCollection property="playingCardViews" destination="qL4-Po-hVf" collectionClass="NSMutableArray" id="ZRb-s5-fHz"/>
+                        <outletCollection property="playingCardViews" destination="i5u-DQ-daW" collectionClass="NSMutableArray" id="U7q-oy-vql"/>
+                        <outletCollection property="playingCardViews" destination="skk-SJ-xVa" collectionClass="NSMutableArray" id="oMr-Rg-RDR"/>
+                        <outletCollection property="playingCardViews" destination="ekU-Lq-FKT" collectionClass="NSMutableArray" id="IBR-4F-bPV"/>
+                        <outletCollection property="playingCardViews" destination="dVx-e0-55l" collectionClass="NSMutableArray" id="cHZ-Tg-5FO"/>
+                        <outletCollection property="playingCardViews" destination="eAa-eQ-wBF" collectionClass="NSMutableArray" id="lh1-Tb-7Ew"/>
+                        <outletCollection property="playingCardViews" destination="dKg-bx-Oqu" collectionClass="NSMutableArray" id="bBu-Ta-LYe"/>
+                        <outletCollection property="playingCardViews" destination="LCc-Mf-ox1" collectionClass="NSMutableArray" id="HwW-Rc-ND7"/>
+                        <outletCollection property="playingCardViews" destination="CsJ-m4-ANp" collectionClass="NSMutableArray" id="gIW-E7-tVj"/>
+                        <outletCollection property="playingCardViews" destination="Miy-0F-bLu" collectionClass="NSMutableArray" id="UUw-9l-rPe"/>
+                        <outletCollection property="playingCardViews" destination="4QU-iF-GAm" collectionClass="NSMutableArray" id="tUC-F2-U4y"/>
+                        <outletCollection property="playingCardViews" destination="W2A-V9-Dz1" collectionClass="NSMutableArray" id="ged-rg-FHC"/>
+                        <outletCollection property="playingCardViews" destination="urS-P1-BLP" collectionClass="NSMutableArray" id="aPw-ns-6YB"/>
+                        <outletCollection property="playingCardViews" destination="Odw-Vu-akK" collectionClass="NSMutableArray" id="llO-su-e6P"/>
+                        <outletCollection property="playingCardViews" destination="aJ4-Mo-SNV" collectionClass="NSMutableArray" id="s02-6B-wsR"/>
+                        <outletCollection property="playingCardViews" destination="2HY-ZZ-32w" collectionClass="NSMutableArray" id="1Ar-mg-ZcR"/>
+                        <outletCollection property="playingCardViews" destination="MZB-0N-zX7" collectionClass="NSMutableArray" id="kBM-hJ-yld"/>
+                        <outletCollection property="playingCardViews" destination="2dR-mW-MMX" collectionClass="NSMutableArray" id="Qba-Zt-MY7"/>
+                        <outletCollection property="playingCardViews" destination="6DO-Cp-T5z" collectionClass="NSMutableArray" id="SDx-EF-bAO"/>
+                        <outletCollection property="playingCardViews" destination="03g-Re-EgN" collectionClass="NSMutableArray" id="da6-Vu-k7v"/>
+                        <outletCollection property="playingCardViews" destination="Vxj-Tq-K7q" collectionClass="NSMutableArray" id="LFG-Gc-xdy"/>
+                        <outletCollection property="playingCardViews" destination="35a-bP-q4U" collectionClass="NSMutableArray" id="Ycv-KQ-dTp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

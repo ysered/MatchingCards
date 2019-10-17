@@ -1,13 +1,13 @@
 import UIKit
 
 class PlayingCardView: UIView {
-
+    
     var isFaceUp: Bool = false
     var faceUpColor: UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
     var faceDownColor: UIColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
     var cornerRadius: CGFloat = 10.0
     var fontSize: CGFloat = 50.0
-    var symbol: Character = "?"
+    var symbol: Character = "🔴" // 🔵⚫️
     
     private lazy var symbolLabel: UILabel = createCenterLabel()
     
@@ -15,12 +15,38 @@ class PlayingCardView: UIView {
         return centeredAttributedString(String(symbol), fontSize: fontSize)
     }
     
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if isFaceUp {
-            return
-        }
-        if touches.count == 1 && event?.type == .touches {
-            toggle()
+    weak var singleTapDelegate: PlayingCardViewDelegate? = nil
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setup()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setup()
+    }
+    
+    private func setup() {
+        isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        tap.numberOfTapsRequired = 1
+        tap.numberOfTouchesRequired = 1
+        addGestureRecognizer(tap)
+    }
+    
+//    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if isFaceUp {
+//            return
+//        }
+//        if touches.count == 1 && event?.type == .touches {
+//            flipOver()
+//        }
+//    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        if sender.view === self {
+            singleTapDelegate?.onTap(view: self, index: tag)
         }
     }
     
@@ -39,7 +65,7 @@ class PlayingCardView: UIView {
         prepareSymbolLabel()
     }
     
-    func toggle() {
+    func flipOver() {
         isFaceUp = !isFaceUp
         refresh()
     }
@@ -77,4 +103,8 @@ extension UIFont {
         let font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
         return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
     }
+}
+
+protocol PlayingCardViewDelegate : class {
+    func onTap(view: PlayingCardView, index: Int)
 }
