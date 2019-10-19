@@ -80,11 +80,18 @@ class PlayingCardView: UIView {
         refresh()
     }
     
+    // TODO: merge with filpCard? Think about better name.
+    func flipBack() {
+        isFaceUp.toggle()
+        refresh()
+    }
+    
     func show() {
         isVisible = true
     }
     
     func hide() {
+        self.rankSymbol = " "
         isVisible = false
     }
     
@@ -118,6 +125,9 @@ class PlayingCardView: UIView {
     }
     
     private func prepareSymbolLabel() {
+        if isHidden {
+            return
+        }
         symbolLabel.attributedText = centeredAttributedString(String(rankSymbol), fontSize: fontSize)
         symbolLabel.frame.size = CGSize.zero
         symbolLabel.sizeToFit()
