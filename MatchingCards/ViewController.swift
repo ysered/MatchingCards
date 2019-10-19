@@ -3,6 +3,8 @@ import UIKit
 
 class ViewController: UIViewController, PlayingCardViewDelegate {
 
+    private var game = Concentration()
+    
     @IBOutlet var playingCardViews: [PlayingCardView]!
     
     override func viewDidLoad() {
@@ -10,10 +12,20 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
         for cardView in playingCardViews {
             cardView.singleTapDelegate = self
         }
+        updateGameScene()
     }
     
-    func onTap(view: PlayingCardView, index: Int) {
-        print("User tapped on view with index: \(index)")
-        view.flipOver()
+    func onTap(playingCardView: PlayingCardView, index: Int) {
+        guard playingCardViews.indices.contains(index) else {
+            print("Index: \(index) out of cards bounds")
+            return
+        }
+        playingCardView.flipOver(card: game.visibleCards[index])
+    }
+    
+    private func updateGameScene() {
+        for index in 0..<game.visibleCards.count {
+            playingCardViews[index].show()
+        }
     }
 }
