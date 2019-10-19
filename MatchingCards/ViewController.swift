@@ -24,8 +24,10 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
         let result = game.flipCard(at: index)
         switch (result) {
         case .flipCard(let index, let card): animateFlipOverCard(at: index, card: card)
-        case .matchedCards(let cards): animateMatchedCards(cards)
-        case .unMatchedCards(let cards): animateUnMatchedCards(cards)
+        case .matchedCards(let first, let second, let third):
+            animateMatchedCards(firstIndex: first, secondIndex: second, thirdIndex: third)
+        case .unMatchedCards(let first, let second, let third):
+            animateUnMatchedCards(firstIndex: first, secondIndex: second, thirdIndex: third)
         }
     }
     
@@ -39,15 +41,41 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
         playingCardViews[index].flipOver(card: game.visibleCards[index])
     }
     
-    private func animateMatchedCards(_ cards: [Int: Card]) {
-        for index in cards.keys {
-            playingCardViews[index].hide()
+    private func animateMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int) {
+        lockOtherCards(exceptOf: firstIndex, secondIndex, thirdIndex)
+        playingCardViews[thirdIndex].flipOver(card: game.visibleCards[thirdIndex])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.playingCardViews[firstIndex].hide()
+            self.playingCardViews[secondIndex].hide()
+            self.playingCardViews[thirdIndex].hide()
+            self.unlockOtherCards(exceptOf: firstIndex, secondIndex, thirdIndex)
         }
     }
     
-    private func animateUnMatchedCards(_ cards: [Int: Card]) {
-        for index in cards.keys {
-            playingCardViews[index].flipBack()
+    private func animateUnMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int) {
+        lockOtherCards(exceptOf: firstIndex, secondIndex, thirdIndex)
+        playingCardViews[thirdIndex].flipOver(card: game.visibleCards[thirdIndex])
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.playingCardViews[firstIndex].flipBack()
+            self.playingCardViews[secondIndex].flipBack()
+            self.playingCardViews[thirdIndex].flipBack()
+            self.unlockOtherCards(exceptOf: firstIndex, secondIndex, thirdIndex)
+        }
+    }
+    
+    private func lockOtherCards(exceptOf indices: Int...) {
+        for (index, cardView) in playingCardViews.enumerated() {
+            if !indices.contains(index) {
+                cardView.isUserInteractionEnabled = false
+            }
+        }
+    }
+    
+    private func unlockOtherCards(exceptOf indices: Int...) {
+        for (index, cardView) in playingCardViews.enumerated() {
+            if !indices.contains(index) {
+                cardView.isUserInteractionEnabled = true
+            }
         }
     }
 }

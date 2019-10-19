@@ -16,6 +16,7 @@
 		8478C2672357B5A500D2C6D4 /* PlayingCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8478C2662357B5A500D2C6D4 /* PlayingCardView.swift */; };
 		84BE6C84235A6D0500CC810C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE6C83235A6D0500CC810C /* Card.swift */; };
 		84BE6C86235A703100CC810C /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE6C85235A703100CC810C /* Concentration.swift */; };
+		84BE6C89235BA0B300CC810C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BE6C88235BA0B300CC810C /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		8478C2662357B5A500D2C6D4 /* PlayingCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingCardView.swift; sourceTree = "<group>"; };
 		84BE6C83235A6D0500CC810C /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		84BE6C85235A703100CC810C /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		84BE6C88235BA0B300CC810C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		8478C2502357B43700D2C6D4 /* MatchingCards */ = {
 			isa = PBXGroup;
 			children = (
+				84BE6C87235BA09F00CC810C /* Utils */,
 				8478C2552357B43700D2C6D4 /* ViewController.swift */,
 				8478C2662357B5A500D2C6D4 /* PlayingCardView.swift */,
 				84BE6C83235A6D0500CC810C /* Card.swift */,
@@ -82,6 +85,14 @@
 				8478C25C2357B43700D2C6D4 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		84BE6C87235BA09F00CC810C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				84BE6C88235BA0B300CC810C /* Extensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +172,7 @@
 				8478C2522357B43700D2C6D4 /* AppDelegate.swift in Sources */,
 				8478C2542357B43700D2C6D4 /* SceneDelegate.swift in Sources */,
 				84BE6C86235A703100CC810C /* Concentration.swift in Sources */,
+				84BE6C89235BA0B300CC810C /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

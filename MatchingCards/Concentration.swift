@@ -27,7 +27,7 @@ struct Concentration {
             }
         }
         cardDeck.shuffle()
-        for _ in 0...Concentration.startCardCount {
+        for _ in 0..<Concentration.startCardCount {
             visibleCards.append(cardDeck.removeFirst())
         }
     }
@@ -40,28 +40,22 @@ struct Concentration {
     
     mutating func flipCard(at index: Int) -> FlipCardResult {
         var result: FlipCardResult
-        if facedUpCardIndicies.count == 3,
+        if facedUpCardIndicies.count == 2
+            && visibleCards.indices.contains(index),
             let first = facedUpCardIndicies.first,
-            let second = facedUpCardIndicies.second,
-            let third = facedUpCardIndicies.third {
+            let second = facedUpCardIndicies.second {
             
             let firstCard = visibleCards[first]
             let secondCard = visibleCards[second]
-            let thirdCard = visibleCards[third]
+            let thirdCard = visibleCards[index]
             
             if firstCard == secondCard && secondCard == thirdCard {
-                result = .matchedCards(matchedCards: [
-                                        first: firstCard,
-                                        second: secondCard,
-                                        third: thirdCard])
+                result = .matchedCards(first: first, second: second, third: index)
                 visibleCards[first].isMatched = true
                 visibleCards[second].isMatched = true
-                visibleCards[third].isMatched = true
+                visibleCards[index].isMatched = true
             } else {
-                result = .unMatchedCards(unmatchedCards: [
-                                            first: firstCard,
-                                            second: secondCard,
-                                            third: thirdCard])
+                result = .unMatchedCards(first: first, second: second, third: index)
             }
             facedUpCardIndicies = []
         } else {
@@ -72,17 +66,8 @@ struct Concentration {
     }
 }
 
-extension Array {
-    var second: Element? {
-        return count >= 1 ? self[1] : nil
-    }
-    var third: Element? {
-        return count >= 2 ? self[2] : nil
-    }
-}
-
 enum FlipCardResult {
     case flipCard(Int, Card)
-    case matchedCards(matchedCards: [Int: Card])
-    case unMatchedCards(unmatchedCards: [Int: Card])
+    case matchedCards(first: Int, second: Int, third: Int)
+    case unMatchedCards(first: Int, second: Int, third: Int)
 }

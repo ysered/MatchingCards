@@ -7,7 +7,7 @@ class PlayingCardView: UIView {
     var isFaceUp: Bool = false
     
     var faceUpColor: UIColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-    var faceDownColor: UIColor = #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1)
+    var faceDownColor: UIColor = #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1)
     var invisibleColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0)
     
     var cornerRadius: CGFloat = 10.0
@@ -91,8 +91,12 @@ class PlayingCardView: UIView {
     }
     
     func hide() {
-        self.rankSymbol = " "
-        isVisible = false
+        UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseOut, animations: {
+            self.alpha = 0
+        }, completion: { (finished: Bool) -> Void in
+            self.rankSymbol = " "
+            self.isVisible = false
+        })
     }
     
     // MARK: Private functions
@@ -148,13 +152,4 @@ class PlayingCardView: UIView {
 
 protocol PlayingCardViewDelegate : class {
     func onTap(playingCardView: PlayingCardView, index: Int)
-}
-
-// MARK: Extensions
-
-extension UIFont {
-    static func scaledFont(forTextStyle: UIFont.TextStyle, fontSize: CGFloat) -> UIFont {
-        let font = UIFont.preferredFont(forTextStyle: .body).withSize(fontSize)
-        return UIFontMetrics(forTextStyle: .body).scaledFont(for: font)
-    }
 }
