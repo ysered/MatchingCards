@@ -1,7 +1,12 @@
 
 import Foundation
 
-struct Card : Equatable, Hashable {
+struct Card : Equatable, Hashable, CustomStringConvertible {
+    
+    var description: String {
+        return "Card(rank=\(rank.rawValue), isFacedUp=\(isFaceUp), isMatched=\(isMatched))"
+    }
+    
     var rank: Rank
     var isFaceUp = false
     var isMatched = false

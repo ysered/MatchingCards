@@ -71,10 +71,6 @@ class PlayingCardView: UIView {
     // MARK: Public API
     
     func flipOver(card: Card) {
-        if (isFaceUp) { // do now flip over card which is faced up
-            return
-        }
-        
         rankSymbol = getCharacterForCard(card: card)
         isFaceUp.toggle()
         refresh()
@@ -84,6 +80,17 @@ class PlayingCardView: UIView {
     func flipBack() {
         isFaceUp.toggle()
         refresh()
+    }
+    
+    func animateInsertion(for card: Card) {
+        self.isVisible = true
+        self.isFaceUp = false
+        self.rankSymbol = self.getCharacterForCard(card: card)
+        UIView.animate(withDuration: 0.4, delay: 0, options: UIView.AnimationOptions.curveEaseIn, animations: {
+            self.alpha = 1
+        }, completion: { (finished: Bool) -> Void in
+            
+        })
     }
     
     func show() {
