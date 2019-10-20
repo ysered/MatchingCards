@@ -29,26 +29,32 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
             return
         }
         
-        let result = game.flipCard(at: index)
-        switch (result) {
-        case .flipCard(let index): animateFlipOverCard(at: index)
-        case .flipBack(let index): animateFlipBackCard(at: index)
-        case .matchedCards(let first, let second, let third):
-            score = score + 2
-            animateMatchedCards(firstIndex: first, secondIndex: second, thirdIndex: third)
-        case .unMatchedCards(let first, let second, let third):
-            score = score > 1 ? score - 1 : 0
-            animateUnMatchedCards(firstIndex: first, secondIndex: second, thirdIndex: third)
-        }
+        game.flipCard(at: index, onResult: { (result: FlipCardResult) in
+            switch (result) {
+            case .flipCard(let index, let card):
+                animateFlipOverCard(at: index, card: card)
+            
+            case .flipBack(let index):
+                animateFlipBackCard(at: index)
+                
+            case .matchedCards(let firstIndex, let secondIndex, let thirdIndex, let lastCard):
+                score = self.score + 2
+                animateMatchedCards(firstIndex: firstIndex, secondIndex: secondIndex, thirdIndex: thirdIndex, lastCard: lastCard)
+            
+            case .unMatchedCards(let firstIndex, let secondIndex, let thirdIndex, let lastCard):
+                score = score > 1 ? score - 1 : 0
+                animateUnMatchedCards(firstIndex: firstIndex, secondIndex: secondIndex, thirdIndex: thirdIndex, lastCard: lastCard)
+            }
+        })
     }
     
     @IBAction func deal3MoreCards(_ sender: UIButton) {
-        if let newCardIndicies = game.dealMoreCards() {
-            for newIndex in newCardIndicies {
-                playingCardViews[newIndex].animateInsertion(for: game.visibleCards[newIndex])
+        game.dealMoreCards(onResult: { (newCards: [(index: Int, card: Card)]) in
+            for (index, card) in newCards {
+                playingCardViews[index].animateInsertion(for: card)
             }
-            updateDealMoreCardsButton()
-        }
+        })
+        updateDealMoreCardsButton()
     }
     
     @IBAction func newGame(_ sender: UIButton) {
@@ -67,25 +73,25 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
     }
     
     private func initCards() {
-        for index in 0..<game.visibleCards.count {
+        for index in 0..<game.visibleCardsCount {
             playingCardViews[index].animateInsertion(for: game.visibleCards[index])
         }
-        for index in game.visibleCards.count..<playingCardViews.count {
+        for index in game.visibleCardsCount..<playingCardViews.count {
             playingCardViews[index].hide()
         }
     }
     
-    private func animateFlipOverCard(at index: Int) {
-        playingCardViews[index].flipOver(card: game.visibleCards[index])
+    private func animateFlipOverCard(at index: Int, card: Card) {
+        playingCardViews[index].flipOver(card: card)
     }
     
     private func animateFlipBackCard(at index: Int) {
         playingCardViews[index].flipBack()
     }
     
-    private func animateMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int) {
+    private func animateMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int, lastCard: Card) {
         lockAllCards()
-        playingCardViews[thirdIndex].flipOver(card: game.visibleCards[thirdIndex])
+        playingCardViews[thirdIndex].flipOver(card: lastCard)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.playingCardViews[firstIndex].hide()
             self.playingCardViews[secondIndex].hide()
@@ -95,9 +101,9 @@ class ViewController: UIViewController, PlayingCardViewDelegate {
         }
     }
     
-    private func animateUnMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int) {
+    private func animateUnMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int, lastCard: Card) {
         lockAllCards()
-        playingCardViews[thirdIndex].flipOver(card: game.visibleCards[thirdIndex])
+        playingCardViews[thirdIndex].flipOver(card: lastCard)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.playingCardViews[firstIndex].flipBack()
             self.playingCardViews[secondIndex].flipBack()

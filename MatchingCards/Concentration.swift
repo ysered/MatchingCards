@@ -9,8 +9,12 @@ struct Concentration {
     static let cardDeckCount = 81
     static let combinationOfCards = Concentration.cardDeckCount / Rank.count
     
+    var visibleCardsCount: Int {
+        visibleCards.count
+    }
+    
     private var cardDeck = [Card]()
-    var visibleCards = [Card]()
+    private(set) var visibleCards = [Card]()
     private var facedUpCardIndicies = [Int]()
     
     var hasRoomForMoreCards: Bool {
@@ -23,7 +27,13 @@ struct Concentration {
     init() {
         cardDeck.reserveCapacity(Concentration.cardDeckCount)
         visibleCards.reserveCapacity(Concentration.visibleRoomCardCount)
-        
+        newGame()
+    }
+    
+    mutating func newGame() {
+        cardDeck = []
+        visibleCards = []
+       
         for _ in 0...Concentration.combinationOfCards {
             for cardSymbol in Rank.all {
                 cardDeck.append(Card(rank: cardSymbol))
@@ -36,7 +46,7 @@ struct Concentration {
     }
     
     /// Add more cards to game and returns indicies where new cards added.
-    mutating func dealMoreCards() -> [Int]? {
+    mutating func dealMoreCards(onResult: ([(Int, Card)]) -> Void) {
         if hasRoomForMoreCards, let indices = findIndiciesForMoreCards() {
             for index in indices {
                 if !cardDeck.isEmpty {
@@ -51,17 +61,19 @@ struct Concentration {
                     break
                 }
             }
-            return indices
+            let indiciesAndCards = indices.map { ($0, visibleCards[$0]) }
+            onResult(indiciesAndCards)
         }
-        return nil
+        return onResult([])
     }
     
-    mutating func flipCard(at index: Int) -> FlipCardResult {
+    mutating func flipCard(at index: Int, onResult: (FlipCardResult) -> Void) {
         // flip back if alread faced up
         if visibleCards[index].isFaceUp {
             visibleCards[index].isFaceUp = false
             facedUpCardIndicies.removeAll {(value: Int) in value == index }
-            return .flipBack(index)
+            onResult(.flipBack(index))
+            return
         }
         
         var result: FlipCardResult
@@ -76,12 +88,12 @@ struct Concentration {
             let thirdCard = visibleCards[index]
             
             if firstCard == secondCard && secondCard == thirdCard {
-                result = .matchedCards(first: first, second: second, third: index)
+                result = .matchedCards(firstIndex: first, secondIndex: second, thirdIndex: index, lastCard: visibleCards[index])
                 visibleCards[first].isMatched = true
                 visibleCards[second].isMatched = true
                 visibleCards[index].isMatched = true
             } else {
-                result = .unMatchedCards(first: first, second: second, third: index)
+                result = .unMatchedCards(firstIndex: first, secondIndex: second, thirdIndex: index, lastCard: visibleCards[index])
                 visibleCards[first].isMatched = false
                 visibleCards[second].isMatched = false
                 visibleCards[index].isMatched = false
@@ -92,12 +104,12 @@ struct Concentration {
             facedUpCardIndicies = []
         } else { // face up single card
             visibleCards[index].isFaceUp = true
-            result = .flipCard(index)
+            result = .flipCard(index, visibleCards[index])
             facedUpCardIndicies.append(index)
         }
-        return result
+        onResult(result)
     }
-    
+        
     private func findIndiciesForMoreCards() -> [Int]? {
         guard hasRoomForMoreCards else {
             print("No indicies for more cards!")
@@ -132,8 +144,8 @@ struct Concentration {
 }
 
 enum FlipCardResult {
-    case flipCard(Int)
+    case flipCard(Int, Card)
     case flipBack(Int)
-    case matchedCards(first: Int, second: Int, third: Int)
-    case unMatchedCards(first: Int, second: Int, third: Int)
+    case matchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int, lastCard: Card)
+    case unMatchedCards(firstIndex: Int, secondIndex: Int, thirdIndex: Int, lastCard: Card)
 }
